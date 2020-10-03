@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>텍스트와 html 파일 읽기</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#btn1').click(function(){
+			$('#disp').load('./sample.txt');
+		});
+
+		$('#btn2').click(function(){
+			$('#disp').load('./sample.html ul');
+		});
+	});
+
+</script>
+ </head>
+ <body>
+	<input type="button" value="텍스트파일 읽기" id="btn1"/>  
+	<input type="button" value="html 파일 읽기" id="btn2"/>  
+<div id="disp"></div>
+
+ </body>
+</html>
