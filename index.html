@@ -40,9 +40,10 @@
 
 				for (k=0; k<table.length; k++) { tzum = tzum + table[k];}
 
+				$('#disp').load(tzum);
+
 				$("#dvCSV").empty();
 				$("#dvCSV").append(tzum);
-				console.log(table[0]);				
 			}
 		});		
 	});
@@ -50,6 +51,7 @@
 </script>
  </head>
  <body>
-<div id="dvCSV"></div>
+ <div id="disp"></div>
+ <div id="dvCSV"></div>
  </body>
 </html>
