@@ -9,7 +9,7 @@
 	$(function(){
 //		$.get('./test.txt',data);
 		$.get('./test.txt', function(data){
-			document.write(data);
+			$('#disp').load(data);
 			console.log(data);
 		});		
 		
