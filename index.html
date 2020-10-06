@@ -12,7 +12,6 @@
 			read.onload = function (e) {
 				table.push('<script type="text/javascript">var data=[');
 				var rows = e.target.result.split('\n');
-			console.log('rows2 : ' + rows[2]);
 				for (var i = 0; i < rows.length; i++) {
 					table.push('[');
 					var cells = rows[i].split(',');
@@ -35,6 +34,9 @@
 					}
 				}
 				table.push(']');
+				
+				console.log('rows2 : ' + rows[2]);
+
 
 				for (k=0; k<table.length; k++) { tzum = tzum + table[k];}
 
