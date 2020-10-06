@@ -8,9 +8,11 @@
 	$(function(){
 		var table = new Array; var tzum="";
 		$.get('./test.txt', function(read){
-			console.log(read);
+			console.log('read : ' + read);
 			read.onload = function (e) {
 				table.push('<script type="text/javascript">var data=[');
+			console.log('table : ' + table);
+
 				var rows = e.target.result.split('\n');
 				for (var i = 0; i < rows.length; i++) {
 					table.push('[');
