@@ -7,9 +7,9 @@
 <script type="text/javascript">
 	$(function(){
 		var table = new Array; var tzum="";
-		$.get('./test.txt', function(data){
-			console.log(data);
-			data.onload = function (e) {
+		$.get('./test.txt', function(read){
+			console.log(read);
+			read.onload = function (e) {
 				table.push('<script type="text/javascript">var data=[');
 				var rows = e.target.result.split('\n');
 				for (var i = 0; i < rows.length; i++) {
@@ -33,7 +33,7 @@
 						}
 					}
 				}
-				table.push(']');
+				table.push(']</script>');
 
 				for (k=0; k<table.length; k++) { tzum = tzum + table[k];}
 
@@ -41,14 +41,6 @@
 				$("#dvCSV").append(tzum);
 			}
 		});		
-		
-	 	$('#btn1').click(function(){
-			$('#disp').load('./sample.txt');
-	 	});
-
-	 	$('#btn2').click(function(){
-	 		$('#disp').load('./sample.html ul');
-	 	});
 	});
 
 </script>
