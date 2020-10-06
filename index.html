@@ -7,10 +7,10 @@
 <script type="text/javascript">
 	$(function(){
 		var table = new Array; var tzum="";
-		$.get('./test.txt', function(read){
-			console.log('read : ' + read);
-			read.onload = function (e) {
-				table.push('<script type="text/javascript">var data=[');
+		$.get('./test.txt', function(data){
+			console.log('read : ' + data);
+			data.onload = function (e) {
+				table.push('<script type="text/javascript">var mdata=[');
 				var rows = e.target.result.split('\n');
 				for (var i = 0; i < rows.length; i++) {
 					table.push('[');
