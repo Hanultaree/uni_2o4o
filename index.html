@@ -5,10 +5,11 @@
   <title>텍스트와 html 파일 읽기</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-	var data = new Array;
+//	var data = new Array;
 	$(function(){
-		$.get('./test.txt',data);
-		console.log('data 값은 : ' + data);
+//		$.get('./test.txt',data);
+//		$('#disp').load('data 값은 : ' + data);
+		$('#disp').load('./test.txt');
 		
 	 	$('#btn1').click(function(){
 			$('#disp').load('./sample.txt');
