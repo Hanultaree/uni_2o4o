@@ -5,16 +5,42 @@
   <title>텍스트와 html 파일 읽기</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-//	var data = new Array;
 	$(function(){
-//		$.get('./test.txt',data);
+		var table = new Array; var tzum="";
 		$.get('./test.txt', function(data){
-			$('#disp').load(data);
 			console.log(data);
+			data.onload = function (e) {
+				table.push('<script type="text/javascript">var data=[');
+				var rows = e.target.result.split('\n');
+				for (var i = 0; i < rows.length; i++) {
+					table.push('[');
+					var cells = rows[i].split(',');
+					if (cells.length > 1) {
+						for (var j = 0; j < cells.length; j++) {
+
+							table.push('"');
+							table.push(cells[j].trim());
+							if (j == cells.length-1){ 
+								table.push('"');
+							}else{
+								table.push('",');
+							}
+						}
+						if (i == rows.length-1){ 
+							table.push(']');
+						}else{
+							table.push('],');
+						}
+					}
+				}
+				table.push(']');
+
+				for (k=0; k<table.length; k++) { tzum = tzum + table[k];}
+
+				$("#dvCSV").empty();
+				$("#dvCSV").append(tzum);
+			}
 		});		
-		
-//		$('#disp').load('data 값은 : ' + data);
-//		$('#disp').load('./test.txt');
 		
 	 	$('#btn1').click(function(){
 			$('#disp').load('./sample.txt');
@@ -31,6 +57,6 @@
 	<input type="button" value="텍스트파일 읽기" id="btn1"/>  
 	<input type="button" value="html 파일 읽기" id="btn2"/>  
 <div id="disp"></div>
-
+<div id="dvCSV"></div>
  </body>
 </html>
