@@ -11,9 +11,8 @@
 			console.log('read : ' + read);
 			read.onload = function (e) {
 				table.push('<script type="text/javascript">var data=[');
-			console.log('table : ' + table);
-
 				var rows = e.target.result.split('\n');
+			console.log('rows2 : ' + rows[2]);
 				for (var i = 0; i < rows.length; i++) {
 					table.push('[');
 					var cells = rows[i].split(',');
