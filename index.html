@@ -8,8 +8,13 @@
 //	var data = new Array;
 	$(function(){
 //		$.get('./test.txt',data);
+		$.get('./test.txt', function(data){
+			document.write(data);
+			console.log(data);
+		});		
+		
 //		$('#disp').load('data 값은 : ' + data);
-		$('#disp').load('./test.txt');
+//		$('#disp').load('./test.txt');
 		
 	 	$('#btn1').click(function(){
 			$('#disp').load('./sample.txt');
