@@ -8,8 +8,8 @@
 	$(function(){
 		var table = new Array; var tzum="";
 		$.get('./test.txt', function(data){
-			console.log('read : ' + data);
 			data.onload = function (e) {
+			console.log('data : ' + data);
 				table.push('<script type="text/javascript">var mdata=[');
 				var rows = e.target.result.split('\n');
 				for (var i = 0; i < rows.length; i++) {
