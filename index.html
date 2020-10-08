@@ -12,29 +12,24 @@ $(function() {
 		url:fileName,
 		dataType:'text',
 		success: function(data) {
-			var allRow = data;
-			//.split(/\r?\n|\r/)
 			var textLine = '<script type="text/javascript">var ms=[';
-			for(var singleRow = 0; singleRow < allRow.length; singleRow++) {
-				
-				textLine += '['
-
-				var collapse = allRow[singleRow].split(",");
-				
-				for(var count = 0; count < collapse.length; count++) {
+                        var rows = data.target.result.split('\n');
+                        for (var i = 0; i < rows.length; i++) {
+				textLine += '[';
+				var cells = rows[i].split(',');
+                                for (var j = 0; j < cells.length; j++) {
 					textLine += '"';
-					textLine += collapse[count];
-					if (count == collapse.length-1){textLine += '"'}else{'",'};
+					textLine += cells[j].trim();;
+					if (j == cells.length-1){textLine += '"'}else{textLine += '",'};
 				}
-				if (singleRow == allRow.length-1){textLine += ']'}else{'],'};
+				if (i == rows.length-1){textLine += ']'}else{textLine += '],'};
 			}	
 			textLine += ']';			
 			$('#textArea').append(textLine);
 			$('#textArea').append("<br>");
 		}
 	});
-	
-});
+});					
 			console.log(ms[3][0]);
 
 </script>
