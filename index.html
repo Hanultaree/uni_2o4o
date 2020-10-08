@@ -32,8 +32,9 @@ $(function() {
 });					
 
                         for (i=0; i < ms.length; i++) {
-				$('#dvCSV').append(ms[i][0] + 'vid : ' + ms[i][1] + '<br>');
+				testtxt += ('<p>' + ms[i][0] + 'vid : ' + ms[i][1] + '</p><br>');
 			};
+$('#dvCSV').append(testtxt);
 
 </script>
  </head>
