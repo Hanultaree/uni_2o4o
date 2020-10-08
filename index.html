@@ -17,16 +17,18 @@ $(function() {
 			var textLine = "";
 			for(var singleRow = 0; singleRow < allRow.length; singleRow++) {
 				var collapse = allRow[singleRow].split(",");
+				console.log(allRow[2]);
 				
 				for(var count = 0; count < collapse.length; count++) {
 					textLine += collapse[count];
+					console.log(collapse[0]);
 				}
 			}
 			
 			$('#textArea').append(textLine);
 			$('#textArea').append("<br>");
 		}
-	});}
+	});
 	
 });
 
