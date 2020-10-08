@@ -28,7 +28,7 @@
 
 <script type="text/javascript">
 var ytbm = new Array;
-$(function() {
+$(function fread() {
 	var fileName = "./test.txt";	// 파일 이름
 
 	$.ajax({
@@ -178,8 +178,9 @@ var dur = null; var t = null; var num=null;
 //================ 음악 List 정렬================
 
 var orderBy = "asc";
-$(function(){
-  setTimeout(init(), 3000);  
+$(async function(){
+	await fread();
+	await init();  
 });
 
 function init(){
