@@ -5,7 +5,7 @@
   <title>텍스트와 html 파일 읽기</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-var ms = new Array;
+var ms = new Array; var testtxt = "";
 $(function() {
 	var fileName = "./test.txt";	// 파일 이름
 
@@ -30,7 +30,10 @@ $(function() {
 		}
 	});
 });					
-			$('#dvCSV').append(ms[3][0] + '<br>' + ms[3][1]);
+
+                        for (i=0; i < ms.length; i++) {
+				$('#dvCSV').append(ms[i][0] + 'vid : ' + ms[i][1] + '<br>');
+			};
 
 </script>
  </head>
