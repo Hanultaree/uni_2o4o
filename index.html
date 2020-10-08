@@ -5,51 +5,45 @@
   <title>텍스트와 html 파일 읽기</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		var table = new Array; var tzum="";
-		$.get('./test.txt', function(data){
-			data.onload = function (e) {
-				table.push('<script type="text/javascript">var mdata=[');
-				var rows = e.target.result.split('\n');
-				for (var i = 0; i < rows.length; i++) {
-					table.push('[');
-					var cells = rows[i].split(',');
-					if (cells.length > 1) {
-						for (var j = 0; j < cells.length; j++) {
+$(function() {
+//	var fileName = "C:/Users/gpwlw/workspace/Test/WebContent/files/data_";	
+	var fileName = "./test";	
 
-							table.push('"');
-							table.push(cells[j].trim());
-							if (j == cells.length-1){ 
-								table.push('"');
-							}else{
-								table.push('",');
-							}
-						}
-						if (i == rows.length-1){ 
-							table.push(']');
-						}else{
-							table.push('],');
-						}
-					}
-				}
-				table.push(']');
+        // 파일 이름
+	var parseName = "";	// 파일 이름 + 숫자 (var -> int 할거)
+	var parse = 0; 		// var형 i를 정수로 변환시킨 값을 담을 변수
+	
+	for(var i=1;i<3;i++) {
+		parse = parseInt(i);
+//		parseName = fileName + parse + '.csv';	// 파일 경로 + sequence + 확장자
+		parseName = fileName + '.txt';	// 파일 경로 + sequence + 확장자
+
+	$.ajax({
+		url:parseName,
+		dataType:'text',
+		success: function(data) {
+			var allRow = data;
+			//.split(/\r?\n|\r/)
+			var textLine = "";
+			for(var singleRow = 0; singleRow < allRow.length; singleRow++) {
+				var collapse = allRow[singleRow].split(",");
 				
-				for (k=0; k<table.length; k++) { tzum = tzum + table[k];}
- 				console.log('tzum : ' + tzum);
-
-				$('#disp').load('./test.txt');
-
-				$("#dvCSV").empty();
-				$("#dvCSV").append(tzum);
+				for(var count = 0; count < collapse.length; count++) {
+					textLine += collapse[count];
+				}
 			}
-			console.log('data : ' + data);
-		});		
-	});
+			
+			$('#textArea').append(textLine);
+			$('#textArea').append("<br>");
+		}
+	});}
+	
+});
 
 </script>
  </head>
  <body>
- <div id="disp"></div>
+ <div id="textArea"></div>
  <div id="dvCSV"></div>
  </body>
 </html>
