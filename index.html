@@ -29,7 +29,8 @@
 <script type="text/javascript">
 var ytbm = new Array;
 	
-function fread() {
+$(function (){
+   function fread() {
 	var fileName = "./test.txt";	// 파일 이름
 
 	$.ajax({
@@ -52,8 +53,9 @@ function fread() {
 			$('head').append(textLine);
 		}
 	});
-};					
-
+   };	
+	fread();
+});
 
    //--■■■■■■■■■■■■■■■■■음악 __Xplayer.js■■■■■■■■■■■■■■■■■■
 
@@ -179,10 +181,9 @@ var dur = null; var t = null; var num=null;
 //================ 음악 List 정렬================
 
 var orderBy = "asc";
-async function loadg(){
-  await fread();
-  await init();  
-};
+$(function (){
+  init();  
+});
 
 function init(){
   tagParsing(ytbm, true);
