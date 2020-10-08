@@ -48,7 +48,7 @@ $(function() {
 				if (i == rows.length-1){textLine += ']'}else{textLine += '],'};
 			}	
 			textLine += ']';			
-			$('#textArea').append(textLine);
+			$('body').append(textLine);
 		}
 	});
 });					
@@ -232,7 +232,7 @@ function tagParsing(obj, init){
 
  </head>
  <body>
- <div id="textArea"></div>
+
 <div class="container">
 		<button id="rtn" onClick="window.close();">RETURN</button><button id="submita"> 자동재생</button>
 
@@ -247,7 +247,7 @@ function tagParsing(obj, init){
 
   <div id="canv">
   </div>
-  
+
  </body>
 </html>
 
