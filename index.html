@@ -1,11 +1,33 @@
-<!doctype html>
-<html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <title>텍스트와 html 파일 읽기</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">-->
+<html lang="ko">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.6">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <style media="screen">
+	*{margin:0;padding:0px;list-style:none;text-decoration:none;}
+    body{margin-top:10px;margin-left:10px; font-size:0.8em;}
+	.container{border:5px solid gray;background:lightblue;text-align:left;max-width:630px;padding:20px;margin:10px;}
+	.report{display:grid;	grid-template-columns: 1fr 7fr 4fr;	grid-gap:1px;	border:5px solid gray;}
+	li{background:#e0ebeb;}
+	.title{border-bottom:0px;margin-bottom:1px;text-align:center;font-weight:bold;}
+	.data{border-top:0px;}
+	.m_no{text-align:center;}
+	.subj,.artst{padding-left:10px;}
+	.title li:hover, .mus:hover, button:hover{color:red;cursor:pointer}
+	button{font-size:0.9em; text-align:center; font-weight:bold;margin:10px;margin-top:0px;padding:5px;}
+
+	#lyr{border:10px solid #33ccff;border-right:10px solid #3366ff;border-bottom:10px solid #3366ff;
+		border-spacing:11px;padding:1px;background:#ffe6ff;width:100%;height:auto;text-align:center;font-family:"굴림";font-weight:bold;}
+	.wd, p{color:blue;padding-left:80px;text-align:left;line-height:160%;height:auto;overflow-y: auto;}
+	h3{text-align:center;color:darkblue;}
+	#canv{max-width:630px;padding:0px;margin:10px;text-align:left;}
+
+</style>
+
 <script type="text/javascript">
-var ms = new Array; var testtxt = "";
+var ytbm = new Array;
 $(function() {
 	var fileName = "./test.txt";	// 파일 이름
 
@@ -13,7 +35,7 @@ $(function() {
 		url:fileName,
 		dataType:'text',
 		success: function(data) {
-			var textLine = '<script type="text/javascript">var ms=[';
+			var textLine = '<script type="text/javascript">var ytbm=[';
                         var rows = data.split('\n');
                         for (var i = 0; i < rows.length; i++) {
 				textLine += '[';
@@ -31,15 +53,201 @@ $(function() {
 	});
 });					
 
-                        for (i=0; i < ms.length; i++) {
-				testtxt += ('<p>' + ms[i][0] + 'vid : ' + ms[i][1] + '</p><br>');
-			};
-$('#dvCSV').append(testtxt);
+
+   //--■■■■■■■■■■■■■■■■■음악 __Xplayer.js■■■■■■■■■■■■■■■■■■
+
+var selm = ""; var seln = "";
+var rank = null; var title = ""; var duet = null;
+var dur = null; var t = null; var num=null;
+
+
+//================ 음악 List 자동재생================
+  	$( function() {
+		$( 'button#submita' ).click(
+		async function () {
+			$('.rk').remove();
+			$(".container").hide();
+			for (i=0; i<ytbm.length; i++){	
+				rank = ytbm[i][0];			
+				title = ytbm[i][3] + ' - ' + ytbm[i][4];
+				num = i;
+				$('#canv').empty();
+				disp(num);
+				duet = ytbm[i][2];
+				await foo(num,duet);
+//				await viewerr();
+			}
+		});
+	});
+
+	function foo(e, t){
+		return new Promise(function(resolve, reject){
+			setTimeout( function(){
+				stopVideo();
+				resolve("async는 Promise방식을 사용합니다.");
+			}, t);
+		});
+	}
+
+	function retn(){
+		$("#canv").empty();
+		$(".container").show();
+	};
+
+//================ 음악 재생 player ==========
+	$(document).on("click", ".mus", 
+	async function(){
+		$(".container").hide();
+		sen=$(this).attr('title');  //*변수생성하여 클릭한 title을 대입  
+		num = Number(sen);
+		seln = ytbm[num][1];
+		rank = ytbm[num][0];			
+		title = ytbm[num][3] + ' - ' + ytbm[num][4];
+		$('#canv').empty();
+		await disp(num);
+//  		await viewerr();
+	});   
+
+//================ 음악 재생 player ==========
+
+ function disp(num){
+	$(function () {
+		selm = ytbm[num][1];
+
+		// 영상의 정보를 담을 player 전역 변수 선언
+		var player = "";
+
+    var tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // HTML 문서가 모두 준비되면
+    $(function () {
+        onYouTubeIframeAPIReady();
+    });
+
+	 $('#canv').append('<div id="lyr"><button id="rtn" onClick="retn();">RETURN</button><br><div><div id="player"></div><hr/> <input type="button" value="재생" onClick="playVideo();"/> <input type="button" value="일시정지" onClick="pauseVideo();"/> <input type="button" value="종료" onClick="stopVideo();"/> <input type="button" id="volumeMute" value="음소거" onClick="volumeMute();"/> 볼륨 : <input type="range" value="50" min="0" max="100" onChange="soundControl(this.value);"/></div><img src="http://cfile202.uf.daum.net/original/11049F414EF7A9A7356A91"><img src="http://pds55.cafe.daum.net/attach/7/cafe/2008/01/06/08/30/47801330ad6f9&filename=a2.gif" height=35> <img src="http://cfs5.blog.daum.net/upload_control/download.blog?fhandle=MDQ5SktAZnM1LmJsb2cuZGF1bS5uZXQ6L0lNQUdFLzEvMTIwLmdpZi50aHVtYg==&amp;filename=120.gif"><img src="http://pds55.cafe.daum.net/attach/7/cafe/2008/01/06/08/30/47801330ad6f9&filename=a2.gif" height=35><img src="http://cfile202.uf.daum.net/original/11049F414EF7A9A7356A91"><br><br><br><h3>' + ytbm[num][3] + ' - ' + ytbm[num][4] + '</h3><br><br><div class="wd">' + ytbm[num][5] + '</div><br><img src="http://cfs2.planet.daum.net/upload_control/pcp_download.php?fhandle=NHZoUzBAZnMyLnBsYW5ldC5kYXVtLm5ldDovMTA3OTIyNDkvMi8yOTMuZ2lm&amp;filename=8.gif"><br><br></div><br><br>');
+
+	});
+};
+
+   // 영상의 세부정보를 player 변수에 담는다.
+   function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+              height : '280'
+            , width : '500'
+            , videoId : selm
+            , playerVars: {
+                'autoplay': 1                     // 자동재생
+               , 'loop' : 1                         // 반복 0 : off, 1 : on
+               , 'playlist' : seln                 // 반복 playlist
+               , 'cc_load_policy' : 0           // 자막 0 : on, 1 : off
+               , 'controls': 1                     // 동영상 플레이어 컨트롤 표기
+               , 'disablekb' : 0                  // 키보드 컨트롤 사용 중지
+            }
+            , events: {
+                'onReady' : playVideo
+			   ,'onError' : onPlayerError
+            }
+        });
+    };
+
+    // 재생
+    function playVideo() {player.playVideo();	};
+    // 일시정지
+    function pauseVideo() {player.pauseVideo();};
+    // 종료
+    function stopVideo() {player.stopVideo();};
+	// Error
+	function onPlayerError(event){
+		errlist.push('Error: ' + event.data + '\t' + rank + '\t' + title + '\t' + selm + '\r\n');
+		return false;
+	};
+
+    // 음소거 On / Off
+    function volumeMute() {
+        // 음소거
+        if(player.isMuted() == true) {player.unMute(); jQuery("#volumeMute").val("음소거");}
+        // 음소거 해제
+        else if(player.isMuted() == false) {player.mute(); jQuery("#volumeMute").val("음소거 해제");}
+    };
+    // 볼륨 조절
+    function soundControl(number) { player.setVolume(number); };
+
+//================ 음악 List 정렬================
+
+var orderBy = "asc";
+$(function(){
+  init();
+});
+
+function init(){
+  tagParsing(ytbm, true);
+
+  //click Evt 정렬
+  $(".title").click(function(){
+    var titleName = this.id;
+    if(titleName == "m_no"){
+      objSort(ytbm, [0]);
+      tagParsing(ytbm, false);
+    }else if(titleName == "subj"){
+      objSort(ytbm, [3]);
+      tagParsing(ytbm, false);
+    }else if(titleName == "artst"){
+      objSort(ytbm, [4]);
+      tagParsing(ytbm, false);
+    }
+  })
+}
+
+function objSort(obj, sort){
+  if(orderBy == "asc"){ //오름차순 정렬
+    orderBy = "desc";
+    obj.sort(function(a, b){
+      if (a[sort] > b[sort]) return 1;
+      else if (a[sort] < b[sort]) return -1;
+    });
+  }else{ //내림차순 정렬
+    orderBy = "asc";
+    obj.sort(function(a, b){
+      if (a[sort] > b[sort]) return -1;
+      else if (a[sort] < b[sort]) return 1;
+    });
+  }
+}
+
+function tagParsing(obj, init){
+  var len = obj.length;
+  var tag = '';
+  for(i=0; i<obj.length; i++){
+    tag += "<li class='m_no mus' title='"+ i +"'>"+obj[i][0]+"</li>"
+    +"<li class='subj mus' title='"+ i +"'>"+obj[i][3]+"</li>"
+    +"<li class='artst'>"+obj[i][4]+"</li>";
+  }
+  document.getElementById("data").innerHTML = tag;
+};
 
 </script>
+
  </head>
  <body>
  <div id="textArea"></div>
- <div id="dvCSV"></div>
+<div class="container">
+		<button id="rtn" onClick="window.close();">RETURN</button><button id="submita"> 자동재생</button>
+
+	<div class="title report">
+		<li id="m_no" class="m_no title">번호</li>
+		<li id="subj" class="subj title">제목</li>
+		<li id="artst" class="artst title">가수</li>
+	</div>
+	<div id="data" class="data report">
+	</div>
+</div>
+
+  <div id="canv">
+  </div>
+  
  </body>
 </html>
+
