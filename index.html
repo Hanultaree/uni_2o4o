@@ -5,6 +5,7 @@
   <title>텍스트와 html 파일 읽기</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+var ms = new Array;
 $(function() {
 	var fileName = "./test.txt";	// 파일 이름
 
@@ -13,7 +14,7 @@ $(function() {
 		dataType:'text',
 		success: function(data) {
 			var textLine = '<script type="text/javascript">var ms=[';
-                        var rows = data.target.result.split('\n');
+                        var rows = data.split('\n');
                         for (var i = 0; i < rows.length; i++) {
 				textLine += '[';
 				var cells = rows[i].split(',');
