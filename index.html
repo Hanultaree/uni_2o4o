@@ -34,9 +34,9 @@ $(function() {
 	$.ajax({
 		url:fileName,
 		dataType:'text',
-		success: function(data) {
+		success: function(da) {
 			var textLine = '<script type="text/javascript">var ytbm=[';
-                        var rows = data.split('\n');
+                        var rows = da.split('\n');
                         for (var i = 0; i < rows.length; i++) {
 				textLine += '[';
 				var cells = rows[i].split(',');
