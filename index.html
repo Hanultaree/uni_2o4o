@@ -37,15 +37,15 @@ $(function() {
 		success: function(da) {
 			var textLine = '<script type="text/javascript">var ytbm=[';
                         var rows = da.split('\n');
-                        for (var i = 0; i < rows.length; i++) {
-				textLine += '[';
+                        for (var i = 0; i < rows.length-1; i++) {
+				if (i == 0){textLine += '['}else{textLine += ',['};
 				var cells = rows[i].split(',');
                                 for (var j = 0; j < cells.length; j++) {
 					textLine += '"';
 					textLine += cells[j].trim();;
 					if (j == cells.length-1){textLine += '"'}else{textLine += '",'};
 				}
-				if (i == rows.length-1){textLine += ']'}else{textLine += '],'};
+				textLine += ']';
 			}	
 			textLine += ']';			
 			$('head').append(textLine);
@@ -179,7 +179,7 @@ var dur = null; var t = null; var num=null;
 
 var orderBy = "asc";
 $(function(){
-  init();
+  setTimeout(init();, 500);  
 });
 
 function init(){
