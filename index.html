@@ -178,9 +178,11 @@ var dur = null; var t = null; var num=null;
 //================ 음악 List 정렬================
 
 var orderBy = "asc";
-$(async function(){
+$(function(){
+   async function(){
 	await fread();
 	await init();  
+   };
 });
 
 function init(){
