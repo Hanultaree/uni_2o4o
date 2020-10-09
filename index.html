@@ -28,15 +28,17 @@
 
 <script type="text/javascript">
 var ytbm = new Array;
+fread("ytbm");
 	
-$(function (){
-	var fileName = "./ytbm.csv";	// 파일 이름
+function fread(fn){
+    $(function (){
+	var fileName = "./" + fn + ".csv";	// 파일 이름
 
 	$.ajax({
 		url:fileName,
 		dataType:'text',
 		success: function(da) {
-			var textLine = '<script type="text/javascript">var ytbm=[';
+			var textLine = '<script type="text/javascript">var ' + fn + '=[';
                         var rows = da.split('\n');
                         for (var i = 0; i < rows.length; i++) {
 				if (i == 0){textLine += '['}else{textLine += ',['};
@@ -52,8 +54,8 @@ $(function (){
 			$('head').append(textLine);
 		}
 	});
-});
-
+    });
+};
    //--■■■■■■■■■■■■■■■■■음악 __Xplayer.js■■■■■■■■■■■■■■■■■■
 
 var selm = ""; var seln = "";
