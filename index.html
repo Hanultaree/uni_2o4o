@@ -6,13 +6,56 @@
 </head>
  <body>
   <script type="text/javascript">
-  $.get( "./test.txt", function( CSVdata) {
-     // CSVdata is populated with the file contents
-     // ready to be converted into an Array
-      data = $.csv.toArray(CSVdata);
-      console.log(data)
-  });	
+   
+var ytbm = new Array;
+	
+$(function (){
+  	var fileName = "./test.txt";	// 파일 이름
 
+  	$.ajax({
+    		url:fileName,
+    		dataType:'text',
+    		success: function(da) {
+         CSV(da);
+    		}
+  	});
+});   
+   
+  
+   
+function CSV( $data ){
+  var i, j, k, len, temp, record, result, field;
+ 
+  // 1. temp로 격하되었다!
+  temp = $data.split( 'n' );
+ 
+  if( temp[0].substr( 0, 2 ) == '@@' ){
+    field = temp[0].substr(2).split( ',' );
+    i = field.length;
+    while( i-- ) field[i] = field[i].replace( trim, '' );
+    temp.shift();
+  }
+ 
+  // 2. 반환용으로 새 배열 생성
+  result = [];
+ 
+  i = 0, j = temp.length;
+  while( i < j ){
+    record = temp[i++];
+ 
+    // 3. 주석이면 넘어가자!
+    if( record.charAt(0) == '#' ) continue;
+ 
+    len = result.length;
+    result[len] = record.split( ',' );
+    k = result[len].length;
+    while( k-- ){
+      result[len][k] = result[len][k].replace( trimL, '' ).replace( trimR, '' );
+      if( field ) result[len][field[k]] = result[len][k];
+    }
+  }
+  return result;
+}
 
   </script>
  </body>
