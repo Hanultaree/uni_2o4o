@@ -38,7 +38,7 @@ $(function (){
 		success: function(da) {
 			var textLine = '<script type="text/javascript">var ytbm=[';
                         var rows = da.split('\n');
-                        for (var i = 0; i < rows.length-1; i++) {
+                        for (var i = 0; i < rows.length; i++) {
 				if (i == 0){textLine += '['}else{textLine += ',['};
 				var cells = rows[i].split(',');
                                 for (var j = 0; j < cells.length; j++) {
