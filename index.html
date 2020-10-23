@@ -126,10 +126,10 @@ function fread(fn){
 		if (clb="b"){ club = "부중산"};
 
 		for (var i = 0; i < skds.length; i++) {
-			if (skds[i][0] == seq && skds[i][10] == club){ 
-				opn = "y" 
-			}else{ 
+			if (skds[i][0] !== seq || skds[i][10] !== club){ 
 				opn = "n" 
+			}else{ 
+				opn = "y" 
 			}
 		}
 	}
