@@ -93,9 +93,10 @@ function fread(fn){
 
   //--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   var seq = ""; //--- (산행기)  seq>"000",   "" : 전체목록표	
-  var opn = "y"; //--- (사진공개)   "y": 전체공개, "n": 일부공개tlistg();
+  var club = ""; //--- (산악회)  "부중산", "산술애",   "" : 전체
+  var opn = ""; //--- (사진공개)   "y": 전체공개, "n": 일부공개tlistg();
   //--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  var num = 0;
+  var num = 0; 	var uval = ""; var clb = "";
 
 //================== seq 값 읽어오기 ================
     function _GET(search) {
@@ -115,8 +116,25 @@ function fread(fn){
     window.onload = function () {
         var search = window.location.search;
         var getData =  _GET(search);
-        seq = getData.val;
+        uval = getData.val;
     }
+
+		clb = uval.substr(0,1);
+		seq = uval.substr(1,4);
+
+		if (clb="a"){ club = "산술애"};
+		if (clb="b"){ club = "부중산"};
+
+		if (clb="c"){ club = ""; opn = "y"}else{
+
+			for (var i = 0; i < skds.length; i++) {
+				if (skds[i][0] == seq && skds[i][10] == club){ 
+					opn = "y" 
+				}else{ 
+					opn = "n" 
+				}
+			}
+		}
 		
 //================== 산행기 alprpt()함수 구동 ================
 	$(function() {
