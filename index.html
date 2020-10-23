@@ -117,7 +117,7 @@ function fread(fn){
         var search = window.location.search;
         var getData =  _GET(search);
         uval = getData.val;
-    }
+
 	clb = uval.substr(0,1);
 	seq = uval.substr(1,3);
 
@@ -133,7 +133,7 @@ function fread(fn){
 			}
 		}
 	}
-		
+    }
 //================== 산행기 alprpt()함수 구동 ================
 	$(function() {
 		setTimeout(() => alprpt(seq, opn), 1000);
