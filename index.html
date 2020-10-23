@@ -121,15 +121,15 @@ function fread(fn){
 	clb = uval.substr(0,1);
 	seq = uval.substr(1,3);
 
-	if (clb="c"){ club = ""; opn = "y"}else{
-		if (clb="a"){ club = "산술애"};
-		if (clb="b"){ club = "부중산"};
+	if (clb=="c"){ club = ""; opn = "y"}else{
+		if (clb=="a"){ club = "산술애"};
+		if (clb=="b"){ club = "부중산"};
 
 		for (var i = 0; i < skds.length; i++) {
-			if (skds[i][0] !== seq || skds[i][10] !== club){ 
-				opn = "n" 
-			}else{ 
+			if (skds[i][0] == seq && skds[i][10] == club){ 
 				opn = "y" 
+			}else{ 
+				opn = "n" 
 			}
 		}
 	}
