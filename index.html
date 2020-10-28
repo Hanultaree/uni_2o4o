@@ -318,7 +318,13 @@ function createyoutubeplayer(nextPageToken){
 }
 
     // 재생
-    function onPlayerReady(event) {event.target.playVideo();	};
+    function onPlayerReady(event) {
+	    event.target.playVideo();
+
+	    //unmute sound and set the volume
+	    event.target.unMute();
+	    event.target.setVolume(50);
+    };
     // 일시정지
     function pauseVideo() {player.pauseVideo();};
     // 종료
