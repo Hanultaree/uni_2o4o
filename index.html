@@ -163,17 +163,19 @@ var mntname = (skds[num][2]).replace(/\s*\(.*?\)\s*/g, " ");
  	titin.push('<div class="canvas"><div class="header"><h2>' + mntname + ' 산행사진</h2></div><div id="canva1"><div class="slid1"><img id="image1" class="mg"></div><div class="slid2"><img id="image2" class="mg"></div><div class="slid3"><img id="image3" class="mg"></div><div class="slid4"><img id="image4" class="mg"></div><div class="slid5"><img id="image5" class="mg"></div><div class="slid6"><img id="image6" class="mg"></div></div><div class="itiner"><p class="ta">배경음악은..... <span class="tb">'+titlm+'</span></p><p class="tc">'+titln+'</p><ul><li>1. 산행일시 : &nbsp; ' + skds[num][1] + ' </li><li>2. 산행지 &nbsp; : &nbsp; ' + skds[num][2] + '_____' + skds[num][3] + ' </li><li>3. 산행코스 : &nbsp; ' + skds[num][4] + ' </li><li>4. 산행시간 : &nbsp; ' + skds[num][5] + ' &nbsp;(휴식/식사 시간 포함)&nbsp; </li><li class="mem">' + skds[num][7] + '</li></ul></div><div class="map"><p>↓ &nbsp; ' + skds[num][2] + ' &nbsp; 등산지도와 코스.....</p><img src="' + skds[num][6] + '"></div><div class="img">');
 
 //================== 이미지 & description 화면================
-	for (var i=0 ; i < trimgs.length ; i++ )
-		{
-		if (trimgs[i][0] ==seq && trimgs[i][2] != opn)
-			{
-					if (trimgs[i][3] ==""){}
-					else{
-						if (trimgs[i][4] ==""){}
-						else{	titin.push('↓ &nbsp;' + trimgs[i][4] + '<br/>');}
-			 		titin.push('<img src="' + trimgs[i][3] + '"><br/><br/>');	}
-			}
-		}
+var frame = $.map(trimgs, function(element, index) {
+  if (element[0] === seq && element[2] != opn) {
+ 	return [element];
+  }
+});
+	for (var i=0 ; i < frame.length ; i++ )
+	   {
+		if (frame[i][3] ==""){}	
+		else{
+			if (frame[i][4] ==""){}	
+			else{	titin.push('↓ &nbsp;' + frame[i][4] + '<br>');}
+		titin.push('<img src="' + frame[i][3] + '"><br><br>');	}
+	   }
 
 //================== 하단 꼬리말 footer 화면==================
  		titin.push('</div><div id="player"></div><div class="footer"><p>끝까지 즐감해 주셔서 감사합니다......</p><br/><img src="http://cfs2.planet.daum.net/upload_control/pcp_download.php?fhandle=NHZoUzBAZnMyLnBsYW5ldC5kYXVtLm5ldDovMTA3OTIyNDkvMi8yOTMuZ2lm&amp;filename=8.gif"></div></div></div>');
