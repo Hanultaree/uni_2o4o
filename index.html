@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=0.5">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+  <link rel="icon" href="#" type="image/x-icon">
 
   <style type="text/css">
 	*{margin:0;padding:0px;list-style:none;text-decoration:none;}
@@ -139,7 +141,7 @@ window.onload = function () {
 	
 //================== 산행기 alprpt()함수 구동 ================
 	$(function() {
-		setTimeout(() => alprpt(seq, opn), 1000);
+		setTimeout(() => alprpt(seq, opn), 1500);
 	});
 
   //--■■■■■■■■■■■■■■■■■999_alprpt.js■■■■■■■■■■■■■■■■■■
@@ -162,7 +164,7 @@ function itiner(){
 				}
 var mntname = (skds[num][2]).replace(/\s*\(.*?\)\s*/g, " ");
 
- 	titin.push('<div class="canvas"><div class="header"><h2>' + mntname + ' 산행사진</h2></div><div id="canva1"><div class="slid1"><img id="image1" class="mg"></div><div class="slid2"><img id="image2" class="mg"></div><div class="slid3"><img id="image3" class="mg"></div><div class="slid4"><img id="image4" class="mg"></div><div class="slid5"><img id="image5" class="mg"></div><div class="slid6"><img id="image6" class="mg"></div></div><div class="itiner"><p class="ta">배경음악은..... <span class="tb">'+titlm+'</span></p><p class="tc">'+titln+'</p><ul><li>1. 산행일시 : &nbsp; ' + skds[num][1] + ' </li><li>2. 산행지 &nbsp; : &nbsp; ' + skds[num][2] + '_____' + skds[num][3] + ' </li><li>3. 산행코스 : &nbsp; ' + skds[num][4] + ' </li><li>4. 산행시간 : &nbsp; ' + skds[num][5] + ' &nbsp;(휴식/식사 시간 포함)&nbsp; </li><li class="mem">' + skds[num][7] + '</li></ul></div><div class="map"><p>↓ &nbsp; ' + skds[num][2] + ' &nbsp; 등산지도와 코스.....</p><img src="' + skds[num][6] + '"></div><div class="img">');
+ 	titin.push('<div class="canvas"><div class="header"><h2>' + mntname + ' 산행사진</h2></div><div id="canva1"><div class="slid1"><img id="image1" class="mg"></div><div class="slid2"><img id="image2" class="mg"></div><div class="slid3"><img id="image3" class="mg"></div><div class="slid4"><img id="image4" class="mg"></div><div class="slid5"><img id="image5" class="mg"></div><div class="slid6"><img id="image6" class="mg"></div></div><div class="itiner"><p class="ta">배경음악은..... <span class="tb">'+titlm+' </span> </p><p class="tc">'+titln+'</p><ul><li>1. 산행일시 : &nbsp; ' + skds[num][1] + ' </li><li>2. 산행지 &nbsp; : &nbsp; ' + skds[num][2] + '_____' + skds[num][3] + ' </li><li>3. 산행코스 : &nbsp; ' + skds[num][4] + ' </li><li>4. 산행시간 : &nbsp; ' + skds[num][5] + ' &nbsp;(휴식/식사 시간 포함)&nbsp; </li><li class="mem">' + skds[num][7] + '</li></ul></div><div class="map"><p>↓ &nbsp; ' + skds[num][2] + ' &nbsp; 등산지도와 코스.....</p><img src="' + skds[num][6] + '"></div><div class="img">');
 
 //================== 이미지 & description 화면================
 var frame = $.map(trimgs, function(element, index) {
@@ -249,32 +251,28 @@ frames.unshift(' ');
 //*== ● alprpt();      ----해당(seq)산행기 display----end===============
    //--■■■■■■■■■■■■■■■■■음악 __Xplayer.js■■■■■■■■■■■■■■■■■■
 
-var selm = ""; var titlm = ""; var h = '1'; var w = '1';
+var selm = ""; var titlm = ""; var h = '280'; var w = '500';
 var seln = "";  var titln = "";
+
 //================ 음악 재생 player ==========
  function musbox(a,b){
 	selm = ""; titlm = ""; seln = ""; titln = "";
 
-if (a==null){a = Math.floor(Math.random() * ytbm.length);}
-selm = ytbm[a][1];
-titlm = ytbm[a][3] +" - "+ ytbm[a][4];
-	    h = '1';   w = '1';
+	if (a==null){a = Math.floor(Math.random() * ytbm.length);}
+	selm = ytbm[a][1];
+	titlm = ytbm[a][3] +" - "+ ytbm[a][4];
+	//	    h = '1';   w = '1';
 
-if (b==1){seln=selm}
-else{
-	for (k=1;k<b ; k++){
-		if (k+a==ytbm.length){a=a-ytbm.length;}
-			seln=seln+ytbm[k+a][1]+",";
-			titln=titln+ytbm[k+a][3] +" - "+ ytbm[k+a][4]+"<br/>";
+	if (b==1){seln=selm}
+	else{
+		for (k=1;k<b ; k++){
+			if (k+a==ytbm.length){a=a-ytbm.length;}
+				seln=seln+ytbm[k+a][1]+",";
+				titln=titln+ytbm[k+a][3] +" - "+ ytbm[k+a][4]+"<br/>";
+		}
+		seln=seln+ytbm[a+b][1];
+		titln=titln+ytbm[k+a][3] +" - "+ ytbm[k+a][4];
 	}
-	seln=seln+ytbm[a+b][1];
-	titln=titln+ytbm[k+a][3] +" - "+ ytbm[k+a][4];
-}
-
-    // HTML 문서가 모두 준비되면
-    $(function () {
-        onYouTubeIframeAPIReady();
-    });
  };
 
 	//create deferred object
@@ -287,67 +285,50 @@ window.onYouTubeIframeAPIReady = function() {
     console.log('Resolved');
 };
 
-
 //================ 음악 재생 player ==========
 
-	//embed youtube api script
-    var tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	  // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-		// 영상의 정보를 담을 player 전역 변수 선언
-		var player = "";
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player = "";
 
-//create YouTube player
-function createyoutubeplayer(nextPageToken){
-    //whenever youtube callback was called = deferred resolved
-    //your custom function will be executed with YT as an argument
-    YTdeferred.done(function(YT) {
-    console.log("create player");
-        //create new player
+      function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-              height : h
-            , width : w
-            , videoId : selm
-            , playerVars: {
-                'autoplay': 1                     // 자동재생
-               , 'loop' : 1                         // 반복 0 : off, 1 : on
-               , 'playlist' : seln                 // 반복 playlist
-               , 'cc_load_policy' : 0           // 자막 0 : on, 1 : off
-               , 'controls': 1                     // 동영상 플레이어 컨트롤 표기
-               , 'disablekb' : 0                  // 키보드 컨트롤 사용 중지
-            }
-            , events: {
-                'onReady' : onPlayerReady
-			   ,'onError' : onPlayerError
-            }
+          height: h,
+          width: w,
+          videoId: selm,
+          playerVars: {
+		  'autoplay': 1                     // 자동재생
+		, 'loop' : 1                         // 반복 0 : off, 1 : on
+		, 'playlist' : seln                 // 반복 playlist
+		, 'mute': 1			  // N.B. here the mute settings.
+	  },
+          events: {
+            'onReady': onPlayerReady,
+			'onError' : onPlayerError
+          }
         });
-    });
-}
+      }
 
-    // 재생
-    function onPlayerReady(event) {event.target.playVideo();	};
-    // 일시정지
-    function pauseVideo() {player.pauseVideo();};
-    // 종료
-    function stopVideo() {player.stopVideo();};
-	// Error
-	function onPlayerError(event){
-		errlist.push('Error: ' + event.data + '\t' + rank + '\t' + title + '\t' + selm + '\r\n');
-		return false;
-	};
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
 
-    // 음소거 On / Off
-    function volumeMute() {
-        // 음소거
-        if(player.isMuted() == true) {player.unMute(); jQuery("#volumeMute").val("음소거");}
-        // 음소거 해제
-        else if(player.isMuted() == false) {player.mute(); jQuery("#volumeMute").val("음소거 해제");}
-    };
-    // 볼륨 조절
-    function soundControl(number) { player.setVolume(number); };
+	  // Error
+	  function onPlayerError(){
+	  	  player.nextVideo();
+	  };
 
+	  // Unmute
+      $('button#unmute').click( function() {
+        player.unMute();	      
+      });
 
  </script>
  </body>
