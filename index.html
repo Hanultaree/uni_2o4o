@@ -275,16 +275,6 @@ var seln = "";  var titln = "";
 	}
  };
 
-	//create deferred object
-	var YTdeferred = $.Deferred();
-	
-//attach a function to onYouTubeIframeAPIReady
-window.onYouTubeIframeAPIReady = function() {
-    //resolve when youtube callback is called passing YT as a parameter
-    YTdeferred.resolve(window.YT);
-    console.log('Resolved');
-};
-
 //================ 음악 재생 player ==========
 
 	  // 2. This code loads the IFrame Player API code asynchronously.
