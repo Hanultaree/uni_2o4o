@@ -163,7 +163,7 @@ function itiner(){
 				}
 var mntname = (skds[num][2]).replace(/\s*\(.*?\)\s*/g, " ");
 
- 	titin.push('<div class="canvas"><div class="header"><h2>' + mntname + ' 산행사진</h2></div><div id="canva1"><div class="slid1"><img id="image1" class="mg"></div><div class="slid2"><img id="image2" class="mg"></div><div class="slid3"><img id="image3" class="mg"></div><div class="slid4"><img id="image4" class="mg"></div><div class="slid5"><img id="image5" class="mg"></div><div class="slid6"><img id="image6" class="mg"></div></div><div class="itiner"><p class="ta"><button id="unmute"> 음악on </button>  배경음악은..... <span class="tb">'+titlm+'</span></p><p class="tc">'+titln+'</p><ul><li>1. 산행일시 : &nbsp; ' + skds[num][1] + ' </li><li>2. 산행지 &nbsp; : &nbsp; ' + skds[num][2] + '_____' + skds[num][3] + ' </li><li>3. 산행코스 : &nbsp; ' + skds[num][4] + ' </li><li>4. 산행시간 : &nbsp; ' + skds[num][5] + ' &nbsp;(휴식/식사 시간 포함)&nbsp; </li><li class="mem">' + skds[num][7] + '</li></ul></div><div class="map"><p>↓ &nbsp; ' + skds[num][2] + ' &nbsp; 등산지도와 코스.....</p><img src="' + skds[num][6] + '"></div><div class="img">');
+ 	titin.push('<div class="canvas"><div class="header"><h2>' + mntname + ' 산행사진</h2></div><div id="canva1"><div class="slid1"><img id="image1" class="mg"></div><div class="slid2"><img id="image2" class="mg"></div><div class="slid3"><img id="image3" class="mg"></div><div class="slid4"><img id="image4" class="mg"></div><div class="slid5"><img id="image5" class="mg"></div><div class="slid6"><img id="image6" class="mg"></div></div><div class="itiner"><p class="ta"><input type="button" id="volumeMute" value="음소거" onClick="volumeMute();"/>  배경음악은..... <span class="tb">'+titlm+'</span></p><p class="tc">'+titln+'</p><ul><li>1. 산행일시 : &nbsp; ' + skds[num][1] + ' </li><li>2. 산행지 &nbsp; : &nbsp; ' + skds[num][2] + '_____' + skds[num][3] + ' </li><li>3. 산행코스 : &nbsp; ' + skds[num][4] + ' </li><li>4. 산행시간 : &nbsp; ' + skds[num][5] + ' &nbsp;(휴식/식사 시간 포함)&nbsp; </li><li class="mem">' + skds[num][7] + '</li></ul></div><div class="map"><p>↓ &nbsp; ' + skds[num][2] + ' &nbsp; 등산지도와 코스.....</p><img src="' + skds[num][6] + '"></div><div class="img">');
 
 //================== 이미지 & description 화면================
 var frame = $.map(trimgs, function(element, index) {
@@ -337,18 +337,18 @@ function createyoutubeplayer(nextPageToken){
     // Error
     function onPlayerError(event){player.nextVideo();};
 
-/*    // 음소거 On / Off
+    // 음소거 On / Off
     function volumeMute() {
         // 음소거
-        if(player.isMuted() == true) {player.unMute(); jQuery("#volumeMute").val("음소거");}
+        if(player.isMuted() == true) {player.unMute(); jQuery("#volumeMute").val("음악Off");}
         // 음소거 해제
-        else if(player.isMuted() == false) {player.mute(); jQuery("#volumeMute").val("음소거 해제");}
-    };*/
-    // 볼륨 조절
+        else if(player.isMuted() == false) {player.mute(); jQuery("#volumeMute").val("음악On");}
+    };
+/*    // 볼륨 조절
     function soundControl(number) { player.setVolume(number); };
     // Unmute
       $('button#unmute').click( function() {player.unMute();});
-
+*/
 
  </script>
  </body>
