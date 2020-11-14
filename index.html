@@ -26,6 +26,7 @@
 	.ta{font-size:0.8em;text-align:center;}
 	.tb{font-size:1.3em;font-weight:bold;text-align:center;}
 	.tc{font-size:0.8em;font-weight:bold;text-align:right;line-height:140%;padding-bottom:1%;}
+	  #volumeMute{font-weight:bold;color:red;}
 	
 	li{font-size:0.8em;line-height:180%;}
 	img{max-width:100%;text-align:center;margin:1%;}
@@ -163,7 +164,7 @@ function itiner(){
 				}
 var mntname = (skds[num][2]).replace(/\s*\(.*?\)\s*/g, " ");
 
- 	titin.push('<div class="canvas"><div class="header"><h2>' + mntname + ' 산행사진</h2></div><div id="canva1"><div class="slid1"><img id="image1" class="mg"></div><div class="slid2"><img id="image2" class="mg"></div><div class="slid3"><img id="image3" class="mg"></div><div class="slid4"><img id="image4" class="mg"></div><div class="slid5"><img id="image5" class="mg"></div><div class="slid6"><img id="image6" class="mg"></div></div><div class="itiner"><p class="ta">배경음악은..... <span class="tb">'+titlm+'</span> &nbsp &nbsp &nbsp <input type="button" id="volumeMute" value="음악on" onClick="volumeMute();"/></p><p class="tc">'+titln+'</p><ul><li>1. 산행일시 : &nbsp; ' + skds[num][1] + ' </li><li>2. 산행지 &nbsp; : &nbsp; ' + skds[num][2] + '_____' + skds[num][3] + ' </li><li>3. 산행코스 : &nbsp; ' + skds[num][4] + ' </li><li>4. 산행시간 : &nbsp; ' + skds[num][5] + ' &nbsp;(휴식/식사 시간 포함)&nbsp; </li><li class="mem">' + skds[num][7] + '</li></ul></div><div class="map"><p>↓ &nbsp; ' + skds[num][2] + ' &nbsp; 등산지도와 코스.....</p><img src="' + skds[num][6] + '"></div><div class="img">');
+ 	titin.push('<div class="canvas"><div class="header"><h2>' + mntname + ' 산행사진</h2></div><div id="canva1"><div class="slid1"><img id="image1" class="mg"></div><div class="slid2"><img id="image2" class="mg"></div><div class="slid3"><img id="image3" class="mg"></div><div class="slid4"><img id="image4" class="mg"></div><div class="slid5"><img id="image5" class="mg"></div><div class="slid6"><img id="image6" class="mg"></div></div><div class="itiner"><p class="ta">배경음악은..... <span class="tb">'+titlm+'</span> &nbsp &nbsp &nbsp <input type="button" id="volumeMute" value=" 음악on " onClick="volumeMute();"/></p><p class="tc">'+titln+'</p><ul><li>1. 산행일시 : &nbsp; ' + skds[num][1] + ' </li><li>2. 산행지 &nbsp; : &nbsp; ' + skds[num][2] + '_____' + skds[num][3] + ' </li><li>3. 산행코스 : &nbsp; ' + skds[num][4] + ' </li><li>4. 산행시간 : &nbsp; ' + skds[num][5] + ' &nbsp;(휴식/식사 시간 포함)&nbsp; </li><li class="mem">' + skds[num][7] + '</li></ul></div><div class="map"><p>↓ &nbsp; ' + skds[num][2] + ' &nbsp; 등산지도와 코스.....</p><img src="' + skds[num][6] + '"></div><div class="img">');
 
 //================== 이미지 & description 화면================
 var frame = $.map(trimgs, function(element, index) {
@@ -321,9 +322,9 @@ function onYouTubeIframeAPIReady() {
     // 음소거 On / Off
     function volumeMute() {
         // 음소거
-        if(player.isMuted() == true) {player.unMute(); jQuery("#volumeMute").val("음악off");}
+        if(player.isMuted() == true) {player.unMute(); jQuery("#volumeMute").val(" 음악off ");}
 	// 음소거 해제
-        else if(player.isMuted() == false) {player.mute(); jQuery("#volumeMute").val("음악on");}
+        else if(player.isMuted() == false) {player.mute(); jQuery("#volumeMute").val(" 음악on ");}
     };
 
  </script>
