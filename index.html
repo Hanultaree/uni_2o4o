@@ -277,6 +277,7 @@ else{
     });
  };
 
+/*
 	//create deferred object
 	var YTdeferred = $.Deferred();
 	
@@ -286,7 +287,7 @@ window.onYouTubeIframeAPIReady = function() {
     YTdeferred.resolve(window.YT);
     console.log('Resolved');
 };
-
+*/
 
 //================ 음악 재생 player ==========
 
@@ -298,15 +299,17 @@ window.onYouTubeIframeAPIReady = function() {
 
 		// 영상의 정보를 담을 player 전역 변수 선언
 		var player = "";
-
+/*
 //create YouTube player
 function createyoutubeplayer(nextPageToken){
     //whenever youtube callback was called = deferred resolved
     //your custom function will be executed with YT as an argument
     YTdeferred.done(function(YT) {
     console.log("create player");
+    */
         //create new player
-        player = new YT.Player('player', {
+function onYouTubeIframeAPIReady() {
+   player = new YT.Player('player', {
               height : h
             , width : w
             , videoId : selm
@@ -324,7 +327,7 @@ function createyoutubeplayer(nextPageToken){
 		,'onError' : onPlayerError
             }
         });
-    });
+//    });
 }
 
     // 재생
