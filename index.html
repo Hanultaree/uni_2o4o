@@ -339,15 +339,10 @@ function createyoutubeplayer(nextPageToken){
     // 음소거 On / Off
     function volumeMute() {
         // 음소거
-        if(player.isMuted() == true) {player.unMute(); jQuery("#volumeMute").val("음악on");}
-        // 음소거 해제
-        else if(player.isMuted() == false) {player.mute(); jQuery("#volumeMute").val("음악off");}
+        if(player.isMuted() == true) {player.unMute(); jQuery("#volumeMute").val("음악off");}
+	// 음소거 해제
+        else if(player.isMuted() == false) {player.mute(); jQuery("#volumeMute").val("음악on");}
     };
-/*    // 볼륨 조절
-    function soundControl(number) { player.setVolume(number); };
-    // Unmute
-      $('button#unmute').click( function() {player.unMute();});
-*/
 
  </script>
  </body>
