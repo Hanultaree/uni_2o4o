@@ -168,18 +168,21 @@ var mntname = (skds[num][2]).replace(/\s*\(.*?\)\s*/g, " ");
 
 //================== 이미지 & description 화면================
 var frame = $.map(trimgs, function(element, index) {
-  if (element[0] === seq && element[2] != opn) {
+//  if (element[0] === seq && element[2] != opn) {
+  if (element[0] === seq) {
  	return [element];
   }
 });
-	for (var i=0 ; i < frame.length ; i++ )
-	   {
+	for (var i=0 ; i < frame.length ; i++ ){
+	   if (frame[i][2] == opn){}
+	   else{
 		if (frame[i][3] ==""){}	
 		else{
 			if (frame[i][4] ==""){}	
 			else{	titin.push('↓ &nbsp;' + frame[i][4] + '<br>');}
 		titin.push('<img src="' + frame[i][3] + '"><br><br>');	}
 	   }
+	}
 
 //================== 하단 꼬리말 footer 화면==================
  		titin.push('</div><div id="player"></div><div class="footer"><p>끝까지 즐감해 주셔서 감사합니다......</p><br/><img src="../uni2o4o/iou.gif"></div></div></div>');
