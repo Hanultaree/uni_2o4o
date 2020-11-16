@@ -58,7 +58,7 @@
 </div>
 
 	<script type="text/javascript">
-var skds = new Array; var trimgs = new Array; var ytbm = new Array;
+//var skds = new Array; var trimgs = new Array; var ytbm = new Array;
 		
 $(function (){
     fread("skds");
@@ -141,9 +141,10 @@ window.onload = function () {
 }
 	
 //================== 산행기 alprpt()함수 구동 ================
-//	$(function() {
-		setTimeout(alprpt(seq, opn), 2000);
-//	});
+ 	$(function() {
+//		setTimeout(alprpt(seq, opn), 2000);
+		setTimeout(() => alprpt(seq, opn), 2000);
+	});
 
   //--■■■■■■■■■■■■■■■■■999_alprpt.js■■■■■■■■■■■■■■■■■■
 //*== ●●●●●●●● alprpt();      ----해당(seq)산행기 (음악,일정,사진,슬라이드)영역==
