@@ -60,13 +60,7 @@
 </div>
 
 	<script type="text/javascript">
-		
-$(function (){
-    fread("skds");
-    fread("trimgs");
-    fread("ytbm");
-});	
-	
+//***********************************************		
 function fread(fn){
     $(function (){
 	var fileName = '../uni2o4o/' + fn + '.csv';	// 파일 이름
@@ -94,15 +88,7 @@ function fread(fn){
 	});
     });
 };
-
-  //--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  var seq = ""; //--- (산행기)  seq>"000",   "" : 전체목록표	
-  var club = ""; //--- (산악회)  "부중산", "산술애",   "" : 전체
-  var opn = ""; //--- (사진공개)   "y": 전체공개, "n": 일부공개tlistg();
-  //--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  var num = 0; 	var uval = ""; var clb = "";
-
-//================== seq 값 읽어오기 ================
+//***********************************************		
     function _GET(search) {
         var obj = {};
         var uri = decodeURI(search);
@@ -116,46 +102,7 @@ function fread(fn){
         }
         return obj;
     }
-
-window.onload = function () {
-	var search = window.location.search;
-	var getData =  _GET(search);
-	uval = getData.val;
-
-	clb = uval.substr(0,1);
-	seq = uval.substr(1,3);
-
-	if (clb=="c"){ club = ""; opn = "y"}else{
-		if (clb=="a"){ club = "산술애"};
-		if (clb=="b"){ club = "부중산"};
-
-		for (var i = 0; i < skds.length; i++) {
-			if (skds[i][0] == seq){
-				if (skds[i][10] == club)	{
-					opn = "y";
-				}else{
-					opn = "n";
-				}
-			}
-		}
-	}
-}
-	
-//================== 산행기 alprpt()함수 구동 ================
- 	$(function() {
-		setTimeout(() => alprpt(seq, opn), 1200);
-	});
-
-  //--■■■■■■■■■■■■■■■■■999_alprpt.js■■■■■■■■■■■■■■■■■■
-//*== ●●●●●●●● alprpt();      ----해당(seq)산행기 (음악,일정,사진,슬라이드)영역==
-function alprpt(seq, opn){
-	$(function (){
-		itiner();
-		sli();
-		musbox( null,5);
-});
-};
-
+//***********************************************		
 function itiner(){
 	$(function (){
  		var titin = new Array; var tsum="";
@@ -192,7 +139,7 @@ var frame = $.map(trimgs, function(element, index) {
   $('.container').append([tsum]);
 });
  };
-
+//***********************************************		
 //================ 이미지 슬라이드 영역 slider ===============
 function sli(){
   	$(function() {
@@ -251,39 +198,8 @@ frames.unshift(' ');
      });
 };
 //*== ● sli();           ----산행기중 슬라이드 부분---- end===============
-//*== ● alprpt();      ----해당(seq)산행기 display----end===============
-   //--■■■■■■■■■■■■■■■■■음악 __Xplayer.js■■■■■■■■■■■■■■■■■■
-
-var selm = ""; var titlm = ""; var h = '1'; var w = '1';
-var seln = "";  var titln = "";
+//***********************************************		
 //================ 음악 재생 player ==========
- function musbox(a,b){
-	selm = ""; titlm = ""; seln = ""; titln = "";
-
-if (a==null){a = Math.floor(Math.random() * ytbm.length);}
-selm = ytbm[a][1];
-titlm = ytbm[a][3] +" - "+ ytbm[a][4];
-	    h = '1';   w = '1';
-
-if (b==1){seln=selm}
-else{
-	for (k=1;k<b ; k++){
-		if (k+a==ytbm.length){a=a-ytbm.length;}
-			seln=seln+ytbm[k+a][1]+",";
-			titln=titln+ytbm[k+a][3] +" - "+ ytbm[k+a][4]+"<br/>";
-	}
-	seln=seln+ytbm[a+b][1];
-	titln=titln+ytbm[k+a][3] +" - "+ ytbm[k+a][4];
-}
-
-    // HTML 문서가 모두 준비되면
-    $(function () {
-        onYouTubeIframeAPIReady();
-    });
- };
-
-//================ 음악 재생 player ==========
-
 	//embed youtube api script
     var tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
@@ -331,6 +247,84 @@ function onYouTubeIframeAPIReady() {
         else if(player.isMuted() == false) {player.mute(); jQuery("#volumeMute").val(" 음악on ");}
     };
 
+//***********************************************		
+   //--■■■■■■■■■■■■■■■■■음악 __Xplayer.js■■■■■■■■■■■■■■■■■■
+
+var selm = ""; var titlm = ""; var h = '1'; var w = '1';
+var seln = "";  var titln = "";
+//================ 음악 재생 player ==========
+ function musbox(a,b){
+	selm = ""; titlm = ""; seln = ""; titln = "";
+
+if (a==null){a = Math.floor(Math.random() * ytbm.length);}
+selm = ytbm[a][1];
+titlm = ytbm[a][3] +" - "+ ytbm[a][4];
+	    h = '1';   w = '1';
+
+if (b==1){seln=selm}
+else{
+	for (k=1;k<b ; k++){
+		if (k+a==ytbm.length){a=a-ytbm.length;}
+			seln=seln+ytbm[k+a][1]+",";
+			titln=titln+ytbm[k+a][3] +" - "+ ytbm[k+a][4]+"<br/>";
+	}
+	seln=seln+ytbm[a+b][1];
+	titln=titln+ytbm[k+a][3] +" - "+ ytbm[k+a][4];
+}
+
+    // HTML 문서가 모두 준비되면
+    $(function () {
+        onYouTubeIframeAPIReady();
+    });
+ };
+//***********************************************		
+  //--■■■■■■■■■■■■■■■■■999_alprpt.js■■■■■■■■■■■■■■■■■■
+//*== ●●●●●●●● alprpt();      ----해당(seq)산행기 (음악,일정,사진,슬라이드)영역==
+function alprpt(seq, opn){
+	$(function (){
+		itiner();
+		sli();
+		musbox( null,5);
+});
+};
+//***********************************************		
+    fread("skds");
+    fread("trimgs");
+    fread("ytbm");
+//***********************************************		
+  //--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  var seq = ""; //--- (산행기)  seq>"000",   "" : 전체목록표	
+  var club = ""; //--- (산악회)  "부중산", "산술애",   "" : 전체
+  var opn = ""; //--- (사진공개)   "y": 전체공개, "n": 일부공개tlistg();
+  //--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  var num = 0; 	var uval = ""; var clb = "";
+
+//================== seq 값 읽어오기 ================
+window.onload = function () {
+	var search = window.location.search;
+	var getData =  _GET(search);
+	uval = getData.val;
+
+	clb = uval.substr(0,1);
+	seq = uval.substr(1,3);
+
+	if (clb=="c"){ club = ""; opn = "y"}else{
+		if (clb=="a"){ club = "산술애"};
+		if (clb=="b"){ club = "부중산"};
+
+		for (var i = 0; i < skds.length; i++) {
+			if (skds[i][0] == seq){
+				if (skds[i][10] == club)	{
+					opn = "y";
+				}else{
+					opn = "n";
+				}
+			}
+		}
+	}
+}
+//================== 산행기 alprpt()함수 구동 ================
+		setTimeout(() => alprpt(seq, opn), 500);
  </script>
  </body>
 </html>
