@@ -89,6 +89,13 @@ function fread(fn){
     });
 };
 //***********************************************		
+  //--■■■■■■■■■■■■■■■■■ csv 파일 읽어오기 ■■■■■■■■■■■■■■■■■■
+$(function (){
+    fread("skds");
+    fread("trimgs");
+    fread("ytbm");
+});
+//***********************************************		
     function _GET(search) {
         var obj = {};
         var uri = decodeURI(search);
@@ -286,12 +293,6 @@ function alprpt(seq, opn){
 });
 };
 //***********************************************		
-$(function (){
-    fread("skds");
-    fread("trimgs");
-    fread("ytbm");
-});
-//***********************************************		
   //--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   var seq = ""; //--- (산행기)  seq>"000",   "" : 전체목록표	
   var club = ""; //--- (산악회)  "부중산", "산술애",   "" : 전체
@@ -325,7 +326,7 @@ window.onload = function () {
 }
 //================== 산행기 alprpt()함수 구동 ================
 $(function (){
-	setTimeout(() => alprpt(seq, opn), 3000);
+	setTimeout(() => alprpt(seq, opn), 1000);
 });
  </script>
  </body>
