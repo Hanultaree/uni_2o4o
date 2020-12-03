@@ -301,7 +301,8 @@ function alprpt(seq, opn){
   var num = 0; 	var uval = ""; var clb = "";
 
 //================== seq 값 읽어오기 ================
-window.onload = function () {
+//window.onload = function () {
+$(function(){
 	var search = window.location.search;
 	var getData =  _GET(search);
 	uval = getData.val;
@@ -319,11 +320,11 @@ window.onload = function () {
 					opn = "y";
 				}else{
 					opn = "n";
-				}
-			}
-		}
-	}
-}
+				};
+			};
+		};
+	};
+});
 //================== 산행기 alprpt()함수 구동 ================
 $(function (){
 	setTimeout(() => alprpt(seq, opn), 1000);
