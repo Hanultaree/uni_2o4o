@@ -297,13 +297,25 @@ else{
 //***********************************************		
   //--■■■■■■■■■■■■■■■■■999_alprpt.js■■■■■■■■■■■■■■■■■■
 //*== ●●●●●●●● alprpt();      ----해당(seq)산행기 (음악,일정,사진,슬라이드)영역==
-function alprpt(seq, opn){
+function alprpt(seq, club){
 	var frame = [];
 	$(function (){
+		for (var i = 0; i < skds.length; i++) {
+			if (skds[i][0] == seq){
+				if (club == ""){ opn = "y";
+			        }else{
+					if (skds[i][10] == club){
+						opn = "y";
+					}else{
+						opn = "n";
+					};
+				};
+			};
+		};
 		itiner();
 		sli();
 		musbox( null,5);
-});
+	});
 };
 //***********************************************		
   //--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -322,24 +334,13 @@ $(function(){
 	clb = uval.substr(0,1);
 	seq = uval.substr(4,3);
 
-	if (clb=="c"){ club = ""; opn = "y"}else{
-		if (clb=="a"){ club = "산술애"};
-		if (clb=="b"){ club = "부중산"};
-
-		for (var i = 0; i < skds.length; i++) {
-			if (skds[i][0] == seq){
-				if (skds[i][10] == club)	{
-					opn = "y";
-				}else{
-					opn = "n";
-				};
-			};
-		};
-	};
+	if (clb=="c"){ club = ""};
+	if (clb=="a"){ club = "산술애"};
+	if (clb=="b"){ club = "부중산"};
 });
 //================== 산행기 alprpt()함수 구동 ================
 $(function (){
-	setTimeout(() => alprpt(seq, opn), 500);
+	setTimeout(() => alprpt(seq, club), 500);
 });
  </script>
  </body>
